@@ -17,7 +17,12 @@ func init() {
 
 // Handler handles "/" requests.
 func Handler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	z := parseInt(vars["z"])
+	x := parseInt(vars["x"])
+	y := parseInt(vars["y"])
 
+	fmt.Println(">>>", z, x, y)
 }
 
 func main() {
@@ -28,7 +33,7 @@ func main() {
 	flag.Parse()
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", Handler)
+	r.HandleFunc("/{z:\\d+}/{x:\\d+}/{y:\\d+}.png", Handler)
 	srv := &http.Server{
 		Addr:    getAddr(),
 		Handler: r,

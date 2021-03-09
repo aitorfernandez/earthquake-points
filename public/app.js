@@ -12,6 +12,6 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   attribution: cartodbAttribution
 }).addTo(map)
 
-L.tileLayer('http://localhost:8010/{z}/{x}/{y}.png', {}).addTo(map);
+L.tileLayer('http://localhost:8010/{z}/{x}/{y}.png', {}).addTo(map)
 
 map.setView([0, 0], 0)
