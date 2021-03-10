@@ -3,9 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"image/png"
 	"log"
 	"net/http"
 
+	"github.com/aitorfernandez/earthquake-points/tile"
 	"github.com/gorilla/mux"
 )
 
@@ -23,6 +25,13 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	y := parseInt(vars["y"])
 
 	fmt.Println(">>>", z, x, y)
+
+	t := tile.New()
+	img := t.Draw()
+
+	w.Header().Set("Content-Type", "image/png")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	png.Encode(w, img)
 }
 
 func main() {
