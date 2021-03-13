@@ -20,14 +20,12 @@ func init() {
 // Handler handles "/" requests.
 func Handler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	z := parseInt(vars["z"])
+	// z := parseInt(vars["z"])
 	x := parseInt(vars["x"])
 	y := parseInt(vars["y"])
 
-	fmt.Println(">>>", z, x, y)
-
 	t := tile.New()
-	img := t.Draw()
+	img := t.Draw(x, y)
 
 	w.Header().Set("Content-Type", "image/png")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
