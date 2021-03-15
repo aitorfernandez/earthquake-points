@@ -4,11 +4,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/qadre/qdoc/api/pkg/projectpath"
+	"github.com/aitorfernandez/earthquake-points/pkg/projectpath"
 )
 
 func TestBase(t *testing.T) {
-	project := "qdoc/api"
+	project := "earthquake-points/pkg"
 	if got := projectpath.Base(); strings.Index(got, project) < 1 {
 		t.Errorf("wrong project path %v", got)
 	}
