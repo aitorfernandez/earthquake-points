@@ -70,11 +70,11 @@ func New() *Feed {
 	return ins
 }
 
-// Draw ...
+// Draw iterates over the array of Quakes creating a Tile for x, y.
 func (f Feed) Draw(x, y int) image.Image {
 	t := tile.New(x, y)
 	for _, q := range f.Quakes {
-		t.GenerateImage(q)
+		t.Draw(q)
 	}
 	return t.Image
 }
