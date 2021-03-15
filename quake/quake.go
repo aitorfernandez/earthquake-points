@@ -3,22 +3,23 @@ package quake
 import (
 	"math"
 
-	m "github.com/aitorfernandez/earthquake-points/math"
+	"github.com/aitorfernandez/earthquake-points/vector"
 )
 
 // Quake ...
 type Quake struct {
-	ID  string
-	Lat float64
-	Lon float64
-	Loc m.Vec2
+	Depth float64
+	Lat   float64
+	Loc   vector.Vec2
+	Lon   float64
+	Mag   float64
 }
 
 func degreesToRadians(deg float64) float64 {
 	return deg * (math.Pi / 180.0)
 }
 
-func latLonToOffsets(lat, long float64) m.Vec2 {
+func latLonToOffsets(lat, long float64) vector.Vec2 {
 	fe := 180
 	r := 1024 / (2 * math.Pi)
 
@@ -27,20 +28,19 @@ func latLonToOffsets(lat, long float64) m.Vec2 {
 
 	x := int(math.Floor(lonRad * r))
 
-	yEqu := r * math.Log(math.Tan(math.Pi/4+latRad/2))
-	y := int(math.Floor(1024/2 - yEqu))
+	yLog := r * math.Log(math.Tan(math.Pi/4+latRad/2))
+	y := int(math.Floor(1024/2 - yLog))
 
-	return m.Vec2{X: x, Y: y}
+	return vector.Vec2{X: x, Y: y}
 }
 
 // New ...
-func New() *Quake {
+func New(depth, lat, lon, mag float64) *Quake {
 	q := &Quake{
-		ID: "ci39575519",
-		// Lat: 35.8715,
-		// Lon: -117.679,
-		Lat: 41.145556,
-		Lon: -73.995,
+		Depth: depth,
+		Lat:   lat,
+		Lon:   lon,
+		Mag:   mag,
 	}
 	q.Loc = latLonToOffsets(q.Lat, q.Lon)
 	return q

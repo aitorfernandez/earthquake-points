@@ -1,9 +1,7 @@
 const map = L.map('map', {
   center: [20.0, 5.0],
-  maxZoom: 4,
   minZoom: 2,
-  zoomDelta: 0.5,
-  zoomSnap: 0,
+  zoomControl: false,
 })
 
 const cartodbAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attribution">CARTO</a>'

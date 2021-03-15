@@ -6,8 +6,9 @@ import (
 	"image/png"
 	"log"
 	"net/http"
+	"strconv"
 
-	"github.com/aitorfernandez/earthquake-points/tile"
+	"github.com/aitorfernandez/earthquake-points/feed"
 	"github.com/gorilla/mux"
 )
 
@@ -17,6 +18,11 @@ func init() {
 	flag.IntVar(&port, "port", 8010, "server port")
 }
 
+func parseInt(s string) int {
+	v, _ := strconv.ParseInt(s, 10, 32)
+	return int(v)
+}
+
 // Handler handles "/" requests.
 func Handler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
@@ -24,8 +30,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	x := parseInt(vars["x"])
 	y := parseInt(vars["y"])
 
-	t := tile.New()
-	img := t.Draw(x, y)
+	f := feed.New()
+	img := f.Draw(x, y)
 
 	w.Header().Set("Content-Type", "image/png")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
