@@ -9,7 +9,7 @@ import (
 	"github.com/lucasb-eyer/go-colorful"
 )
 
-// Tile structs ...
+// Tile keeps image and size from a Tile in the map.
 type Tile struct {
 	Image *image.NRGBA
 	Size  int

@@ -2,15 +2,18 @@ package quake
 
 import (
 	"math"
-
-	"github.com/aitorfernandez/earthquake-points/vector"
 )
 
-// Quake ...
+// Vec2 keeps X and Y locations.
+type Vec2 struct {
+	X, Y int
+}
+
+// Quake keeps quake information from feeds.
 type Quake struct {
 	Depth float64
 	Lat   float64
-	Loc   vector.Vec2
+	Loc   Vec2
 	Lon   float64
 	Mag   float64
 }
@@ -19,7 +22,7 @@ func degreesToRadians(deg float64) float64 {
 	return deg * (math.Pi / 180.0)
 }
 
-func latLonToOffsets(lat, long float64) vector.Vec2 {
+func latLonToOffsets(lat, long float64) Vec2 {
 	fe := 180
 	r := 1024 / (2 * math.Pi)
 
@@ -31,10 +34,10 @@ func latLonToOffsets(lat, long float64) vector.Vec2 {
 	yLog := r * math.Log(math.Tan(math.Pi/4+latRad/2))
 	y := int(math.Floor(1024/2 - yLog))
 
-	return vector.Vec2{X: x, Y: y}
+	return Vec2{X: x, Y: y}
 }
 
-// New ...
+// New returns a new Quake.
 func New(depth, lat, lon, mag float64) *Quake {
 	q := &Quake{
 		Depth: depth,
