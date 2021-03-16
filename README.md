@@ -27,5 +27,5 @@ Then visit [http://localhost:8000/](http://localhost:8000/) in your browser!
 
 ## TODO
 
-- [ ] Load dynamic feeds https://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php
+- [ ] Load dynamic feeds from https://earthquake.usgs.gov/earthquakes/feed/v1.0/csv.php
 - [ ] Implement zoom options
